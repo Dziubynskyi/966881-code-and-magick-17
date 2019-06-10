@@ -4,11 +4,19 @@ var CLOUD_WIDTH = 500; // ширина облака
 var CLOUD_HEIGHT = 200; // высота облака
 var CLOUD_X = 100; // координаты прямоугольника X
 var CLOUD_Y = 50; // координаты прямоугольника Y
+
 var GAP = 10; // зазор тени
 var FONT_GAP = 15;
 var TEXT_WIDTH = 50;
 var BAR_HEIGHT = 20;
 var barWidth = CLOUD_WIDTH - GAP - TEXT_WIDTH - GAP;
+
+var GRAPHIC_Y = 230;
+var GRAPHIC_WIDTH = 40;
+var Y_PLAYER_NAME = 242;
+var Y_PLAYER_TIME = 100;
+var MAX_HEIGHT = 100;
+var STEP_RIGHT = 100;
 
 var renderCloud = function(ctx, x, y, color) {
   ctx.fillStyle = color; // cвойство цвета заливки прямоугольника
@@ -42,10 +50,10 @@ window.renderStatistics = function(ctx, players, times) {
     else{
        ctx.fillStyle = 'blue';
     }
-    ctx.fillRect(x, 230, 40,-Math.abs((100 * times[i]) / maxTime)); // координаты х столбца относительно левого угла , координаты у столбца относительно верха, ширина столбца , высота столбца
+    ctx.fillRect(x, GRAPHIC_Y, GRAPHIC_WIDTH,-Math.abs((MAX_HEIGHT * times[i]) / maxTime)); // координаты х столбца относительно левого угла , координаты у столбца относительно верха, ширина столбца , высота столбца
     ctx.fillStyle = 'black';
-    ctx.fillText(players[i], x, 242); // имя игрока , координата x , координата у
-    ctx.fillText(Math.ceil(times[i]), x, 100);
-    x+=100;
+    ctx.fillText(players[i], x, Y_PLAYER_NAME); // имя игрока , координата x , координата у
+    ctx.fillText(Math.ceil(times[i]), x, Y_PLAYER_TIME);
+    x+=STEP_RIGHT;
   }
 };
